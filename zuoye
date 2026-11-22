@@ -5,27 +5,35 @@ struct student{
     char name[20];
     char id[20];
     float score[3];
-    float  total[1];
-    float average[1];
+    float  total;
+    float average;
 };
 int main(){
-   int n=0,i=0,b=0;
+   int n=0,i=0,b=0,j=0;
     printf("请输入学生人数：");
     scanf("%d",&n);
     struct student *stu=(struct student*)malloc(n*sizeof(struct student));
     for(i=0;i<n;i++){
-        scanf("%f %f %f",&stu[i].score[0],&stu[i].score[1],&stu[i].score[2]);
-       stu[i].total[0]=stu[i].score[0]+stu[i].score[1]+stu[i].score[2];
-       stu[i].average[0]=stu[i].total[0]/3.0;
-       if(stu[i].average[0]>=60){
+       scanf("%f %f %f",&stu[i].score[0],&stu[i].score[1],&stu[i].score[2]);
+       stu[i].total=stu[i].score[0]+stu[i].score[1]+stu[i].score[2];
+       stu[i].average=stu[i].total/3.0;
+       stu[i].total=stu[i].score[0]+stu[i].score[1]+stu[i].score[2];
+       stu[i].average=stu[i].total/3.0;
+        if(stu[i].average>=60){
            b++;
        }
+    struct student temp;
+        for(int i=0;i<4;i++){
+     for(int j=i;j<4;j++){
+     if (stu[j].total>stu[j+1].total){
+        temp=stu[j];
+        stu[j]=stu[j+1];
+        stu[j+1]=temp;
+        for(int c=0;c<4;c++){
+        printf("%f",stu[c].total);}printf("\n");
+     }}}
     }
     printf("及格人数：%d\n",b);
-
-
-
-
-
-
+    free(stu);
+    return 0;     
 }
